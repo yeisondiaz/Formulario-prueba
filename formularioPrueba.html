@@ -1,0 +1,19 @@
+<form id="miFormulario">
+  <label>Nombre: <input type="text" name="nombre"></label><br>
+  <label>Correo: <input type="email" name="correo"></label><br>
+  <label>Mensaje: <textarea name="mensaje"></textarea></label><br>
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyX4TfXpI75RXATdBkBVQk14s7b80Nd-bf0RpEiM4eRVoCkdvHa8in_jUd4GYGPlcWUIQ/exec"; // la URL que te dio Apps Script
+  const form = document.getElementById('miFormulario');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault(); // evita que se recargue la página
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => alert('Datos enviados correctamente'))
+      .catch(error => alert('Error al enviar los datos'));
+  });
+</script>
